@@ -1,0 +1,1010 @@
+{
+    "tsuen wan": {
+        "latitude": 22.3716605,
+        "longitude": 114.1134699
+    },
+    "hong kong island": {
+        "latitude": 22.2793278,
+        "longitude": 114.1628131
+    },
+    "quarry bay": {
+        "latitude": 22.2877545,
+        "longitude": 114.2149322
+    },
+    "hong kong": {
+        "latitude": 22.2793278,
+        "longitude": 114.1628131
+    },
+    "central": {
+        "latitude": 22.2850394,
+        "longitude": 114.1583819
+    },
+    "kwun tong": {
+        "latitude": 22.312937,
+        "longitude": 114.22561
+    },
+    "tai po": {
+        "latitude": 22.4494017,
+        "longitude": 114.1711328
+    },
+    "mongkok": {
+        "latitude": 22.3197491,
+        "longitude": 114.1693644
+    },
+    "causeway bay": {
+        "latitude": 22.280208,
+        "longitude": 114.1848407
+    },
+    "taikoo shing": {
+        "latitude": 22.287598250000002,
+        "longitude": 114.21520735567472
+    },
+    "pokfulam": {
+        "latitude": 22.2613573,
+        "longitude": 114.1368089
+    },
+    "china": {
+        "latitude": 35.000074,
+        "longitude": 104.999927
+    },
+    "kowloon bay": {
+        "latitude": 22.323467299999997,
+        "longitude": 114.21406755240673
+    },
+    "kwai fong": {
+        "latitude": 22.35682155,
+        "longitude": 114.12778832793332
+    },
+    "wanchai": {
+        "latitude": 22.2790146,
+        "longitude": 114.1724833
+    },
+    "sheung wan": {
+        "latitude": 22.2868701,
+        "longitude": 114.150267
+    },
+    "shatin": {
+        "latitude": 22.3835565,
+        "longitude": 114.1899848
+    },
+    "lai chi kok": {
+        "latitude": 22.336524400000002,
+        "longitude": 114.1480691375744
+    },
+    "tseung kwan o": {
+        "latitude": 22.3087855,
+        "longitude": 114.259633
+    },
+    "southern district": {
+        "latitude": 22.2192627,
+        "longitude": 114.22522984854672
+    },
+    "tuen mun": {
+        "latitude": 22.3912163,
+        "longitude": 113.9762817
+    },
+    "north point": {
+        "latitude": 22.2881971,
+        "longitude": 114.199596
+    },
+    "fanling, sheung shui": {
+        "latitude": 22.5011719,
+        "longitude": 114.1280563
+    },
+    "wong chuk hang": {
+        "latitude": 22.2485106,
+        "longitude": 114.1667025
+    },
+    "kowloon": {
+        "latitude": 22.3116452,
+        "longitude": 114.1767885
+    },
+    "homantin": {
+        "latitude": 22.31605435,
+        "longitude": 114.17673553880041
+    },
+    "mei foo": {
+        "latitude": 22.33880415,
+        "longitude": 114.13654883655086
+    },
+    "central, wong chuk hang": {
+        "latitude": 22.2485106,
+        "longitude": 114.1667025
+    },
+    "kwai hing": {
+        "latitude": 22.3630553,
+        "longitude": 114.1311840162384
+    },
+    "kowloon tong": {
+        "latitude": 22.336213,
+        "longitude": 114.1799105
+    },
+    "cheung sha wan": {
+        "latitude": 22.3355066,
+        "longitude": 114.1561596
+    },
+    "tsing yi": {
+        "latitude": 22.344419000000002,
+        "longitude": 114.09898192840106
+    },
+    "chai wan": {
+        "latitude": 22.264783350000002,
+        "longitude": 114.23723836932163
+    },
+    "admiralty": {
+        "latitude": 22.2789208,
+        "longitude": 114.1644982
+    },
+    "ngau tau kok": {
+        "latitude": 22.315511649999998,
+        "longitude": 114.21909231828533
+    },
+    "discovery bay": {
+        "latitude": 22.2973688,
+        "longitude": 114.016528
+    },
+    "fortress hill": {
+        "latitude": 22.2875631,
+        "longitude": 114.1933149
+    },
+    "macau": {
+        "latitude": 22.1757605,
+        "longitude": 113.5514142
+    },
+    "sai kung": {
+        "latitude": 22.3822489,
+        "longitude": 114.2728277
+    },
+    "hong kong, causeway bay": {
+        "latitude": 22.280208,
+        "longitude": 114.1848407
+    },
+    "aberdeen": {
+        "latitude": 22.2487691,
+        "longitude": 114.155954
+    },
+    "causeway bay, central": {
+        "latitude": 22.280208,
+        "longitude": 114.1848407
+    },
+    "kwai chung": {
+        "latitude": 22.3609551,
+        "longitude": 114.1290095
+    },
+    "hong kong island, central": {
+        "latitude": 22.2793278,
+        "longitude": 114.1628131
+    },
+    "new territories": {
+        "latitude": 22.4300716,
+        "longitude": 114.0724197
+    },
+    "pak shek kok": {
+        "latitude": 22.4275061,
+        "longitude": 114.2023539
+    },
+    "hunghom": {
+        "latitude": 22.305605649999997,
+        "longitude": 114.18559884240159
+    },
+    "hong kong, shatin": {
+        "latitude": 22.3835565,
+        "longitude": 114.1899848
+    },
+    "fanling": {
+        "latitude": 22.4946255,
+        "longitude": 114.1382744
+    },
+    "yuen long": {
+        "latitude": 22.4444901,
+        "longitude": 114.0287645
+    },
+    "chek lap kok": {
+        "latitude": 22.30691315,
+        "longitude": 113.918213569653
+    },
+    "kowloon city": {
+        "latitude": 22.3301595,
+        "longitude": 114.1899368
+    },
+    "the peak": {
+        "latitude": 22.2699166,
+        "longitude": 114.1506667
+    },
+    "apleichau": {
+        "latitude": 22.2479823,
+        "longitude": 114.16067565042084
+    },
+    "kennedy town, north point": {
+        "latitude": 22.2824348,
+        "longitude": 114.1284168
+    },
+    "overseas": {
+        "latitude": 34.7408353,
+        "longitude": 135.52983
+    },
+    "wong tai sin": {
+        "latitude": 22.34165365,
+        "longitude": 114.19385869532955
+    },
+    "kennedy town": {
+        "latitude": 22.28131165,
+        "longitude": 114.12916039816602
+    },
+    "eastern district": {
+        "latitude": 22.2730777,
+        "longitude": 114.23359377341592
+    },
+    "sham shui po": {
+        "latitude": 22.32819,
+        "longitude": 114.1608545
+    },
+    "yaumatei": {
+        "latitude": 22.31177375,
+        "longitude": 114.17116696355802
+    },
+    "tai kok tsui": {
+        "latitude": 22.3207508,
+        "longitude": 114.1603513
+    },
+    "wan chai": {
+        "latitude": 22.2790146,
+        "longitude": 114.1724833
+    },
+    "central and western district": {
+        "latitude": 22.27484785,
+        "longitude": 114.148724944187
+    },
+    "international": {
+        "latitude": 22.2613817,
+        "longitude": 114.1325765
+    },
+    "gu\u01cengzh\u014du sh\u00ec": {
+        "latitude": 23.1301964,
+        "longitude": 113.2592945
+    },
+    "tsim sha tsui": {
+        "latitude": 22.298872,
+        "longitude": 114.1741181
+    },
+    "wan chai district": {
+        "latitude": 22.27394695,
+        "longitude": 114.18174874679013
+    },
+    "kwun tong district": {
+        "latitude": 22.308648599999998,
+        "longitude": 114.22766104671223
+    },
+    "sh\u00e0ngh\u01cei": {
+        "latitude": 31.2252985,
+        "longitude": 121.4890497
+    },
+    "b\u011bij\u012bng": {
+        "latitude": 39.906217,
+        "longitude": 116.3912757
+    },
+    "san po kong": {
+        "latitude": 22.3385456,
+        "longitude": 114.1973986
+    },
+    "pok fu lam": {
+        "latitude": 22.2613573,
+        "longitude": 114.1368089
+    },
+    "sha tin district": {
+        "latitude": 22.39157275,
+        "longitude": 114.20809762908664
+    },
+    "gu\u01cengd\u014dng": {
+        "latitude": 23.1357694,
+        "longitude": 113.1982688
+    },
+    "tsuen wan district": {
+        "latitude": 22.364986950000002,
+        "longitude": 114.07768836682578
+    },
+    "h\u00fan\u00e1n": {
+        "latitude": 27.9995878,
+        "longitude": 112.009538
+    },
+    "mong kok": {
+        "latitude": 22.3197491,
+        "longitude": 114.1693644
+    },
+    "tuen mun district": {
+        "latitude": 22.3788404,
+        "longitude": 113.95282979560184
+    },
+    "f\u00faji\u00e0n": {
+        "latitude": 26.5450001,
+        "longitude": 117.842778
+    },
+    "kwai tsing district": {
+        "latitude": 22.34100685,
+        "longitude": 114.10428549895929
+    },
+    "tung chung": {
+        "latitude": 22.289257499999998,
+        "longitude": 113.94149103141196
+    },
+    "tai po district": {
+        "latitude": 22.480971150000002,
+        "longitude": 114.30410296970287
+    },
+    "tai tam": {
+        "latitude": 22.2348465,
+        "longitude": 114.2255163
+    },
+    "tai koo": {
+        "latitude": 22.2845316,
+        "longitude": 114.2163521
+    },
+    "hung hom": {
+        "latitude": 22.3028568,
+        "longitude": 114.18203242951043
+    },
+    "tin hau": {
+        "latitude": 22.2822771,
+        "longitude": 114.1919173
+    },
+    "shau kei wan": {
+        "latitude": 22.2790972,
+        "longitude": 114.2286665
+    },
+    "sai wan": {
+        "latitude": 22.2858376,
+        "longitude": 114.134023
+    },
+    "lantau island": {
+        "latitude": 22.27146865,
+        "longitude": 113.94422320296745
+    },
+    "yau ma tei": {
+        "latitude": 22.312364600000002,
+        "longitude": 114.17077886436581
+    },
+    "to kwa wan": {
+        "latitude": 22.3167582,
+        "longitude": 114.1895402
+    },
+    "sheung shui": {
+        "latitude": 22.5014146,
+        "longitude": 114.1287033
+    },
+    "sai ying pun": {
+        "latitude": 22.286121,
+        "longitude": 114.1420862
+    },
+    "siu sai wan": {
+        "latitude": 22.2637273,
+        "longitude": 114.2502079
+    },
+    "sai wan ho": {
+        "latitude": 22.2816256,
+        "longitude": 114.2222894
+    },
+    "tin shui wai": {
+        "latitude": 22.4596112,
+        "longitude": 114.0022375
+    },
+    "lei yue mun": {
+        "latitude": 22.2886954,
+        "longitude": 114.2386453
+    },
+    "chai wan island": {
+        "latitude": 22.264783350000002,
+        "longitude": 114.23723836932163
+    },
+    "tung chung, islands": {
+        "latitude": 22.289257499999998,
+        "longitude": 113.94149103141196
+    },
+    "sheung wan island": {
+        "latitude": 22.2868701,
+        "longitude": 114.150267
+    },
+    "north point island": {
+        "latitude": 22.2881971,
+        "longitude": 114.199596
+    },
+    "causeway bay island": {
+        "latitude": 22.280208,
+        "longitude": 114.1848407
+    },
+    "sai ying pun island": {
+        "latitude": 22.286121,
+        "longitude": 114.1420862
+    },
+    "sha tin, new territories": {
+        "latitude": 22.3830349,
+        "longitude": 114.18781658402725
+    },
+    "quarry bay island": {
+        "latitude": 22.2877545,
+        "longitude": 114.2149322
+    },
+    "tai po, new territories": {
+        "latitude": 22.2891584,
+        "longitude": 113.9489258
+    },
+    "tuen mun, new territories": {
+        "latitude": 22.39486275,
+        "longitude": 113.97306979942674
+    },
+    "wan chai island": {
+        "latitude": 22.2790146,
+        "longitude": 114.1724833
+    },
+    "kwai chung, new territories": {
+        "latitude": 22.3609551,
+        "longitude": 114.1290095
+    },
+    "taikoo island": {
+        "latitude": 22.286651,
+        "longitude": 114.2076517
+    },
+    "lantau island, islands": {
+        "latitude": 22.27146865,
+        "longitude": 113.94422320296745
+    },
+    "aberdeen island": {
+        "latitude": 22.2487691,
+        "longitude": 114.155954
+    },
+    "tsuen wan, new territories": {
+        "latitude": 22.3716605,
+        "longitude": 114.1134699
+    },
+    "sai wan island": {
+        "latitude": 22.2858376,
+        "longitude": 114.134023
+    },
+    "fortress hill island": {
+        "latitude": 22.2875631,
+        "longitude": 114.1933149
+    },
+    "central island": {
+        "latitude": 22.2850394,
+        "longitude": 114.1583819
+    },
+    "wong chuk hang island": {
+        "latitude": 22.2485106,
+        "longitude": 114.1667025
+    },
+    "admiralty island": {
+        "latitude": 22.2789208,
+        "longitude": 114.1644982
+    },
+    "tin wan island": {
+        "latitude": 22.2503533,
+        "longitude": 114.1492647
+    },
+    "shau kei wan island": {
+        "latitude": 22.2790972,
+        "longitude": 114.2286665
+    },
+    "kennedy town island": {
+        "latitude": 22.28131165,
+        "longitude": 114.12916039816602
+    },
+    "shek o island": {
+        "latitude": 22.2307536,
+        "longitude": 114.2510366
+    },
+    "cyberport island": {
+        "latitude": 22.260696799999998,
+        "longitude": 114.1302863143542
+    },
+    "sai wan ho island": {
+        "latitude": 22.2816256,
+        "longitude": 114.2222894
+    },
+    "tai po ind. estate, new territories": {
+        "latitude": 22.45676425,
+        "longitude": 114.186513913324
+    },
+    "tseung kwan o, new territories": {
+        "latitude": 22.29235405,
+        "longitude": 114.25775726431843
+    },
+    "tai wai, new territories": {
+        "latitude": 22.3730706,
+        "longitude": 114.17888738921748
+    },
+    "tsing yi, new territories": {
+        "latitude": 22.344419000000002,
+        "longitude": 114.09898192840106
+    },
+    "kwu tung, new territories": {
+        "latitude": 22.5042709,
+        "longitude": 114.1028452
+    },
+    "fo tan, new territories": {
+        "latitude": 22.39518655,
+        "longitude": 114.198122891233
+    },
+    "sai kung, new territories": {
+        "latitude": 22.3823454,
+        "longitude": 114.2736222
+    },
+    "yuen long, new territories": {
+        "latitude": 22.4444901,
+        "longitude": 114.0287645
+    },
+    "ma on shan, new territories": {
+        "latitude": 22.4228112,
+        "longitude": 114.2301911
+    },
+    "fanling, new territories": {
+        "latitude": 22.4946255,
+        "longitude": 114.1382744
+    },
+    "tin shui wai, new territories": {
+        "latitude": 22.4596112,
+        "longitude": 114.0022375
+    },
+    "lau fau shan, new territories": {
+        "latitude": 22.4673719,
+        "longitude": 113.984152
+    },
+    "tai wo hau, new territories": {
+        "latitude": 22.3694311,
+        "longitude": 114.1257669
+    },
+    " \n shatin district\n\n\t\t\t\t\t\t\nnew territories\n ": {
+        "latitude": 22.39691415,
+        "longitude": 114.20950950491918
+    },
+    " \n southern district\n\n\t\t\t\t\t\t\nhong kong island\n ": {
+        "latitude": 22.2192627,
+        "longitude": 114.22522984854672
+    },
+    " \n yau tsim mong district\n\n\t\t\t\t\t\t\nkowloon\n ": {
+        "latitude": 22.3074036,
+        "longitude": 114.16552591155013
+    },
+    " \n tsuen wan district\n\n\t\t\t\t\t\t\nnew territories\n ": {
+        "latitude": 22.364986950000002,
+        "longitude": 114.07768836682578
+    },
+    "tin hau island": {
+        "latitude": 22.2822771,
+        "longitude": 114.1919173
+    },
+    "kwun tong, kowloon": {
+        "latitude": 22.312937,
+        "longitude": 114.22561
+    },
+    "tsim sha tsui, kowloon": {
+        "latitude": 22.298872,
+        "longitude": 114.1741181
+    },
+    "ngau tau kok, kowloon": {
+        "latitude": 22.315511649999998,
+        "longitude": 114.21909231828533
+    },
+    "mong kok, kowloon": {
+        "latitude": 22.3197491,
+        "longitude": 114.1693644
+    },
+    "kowloon bay, kowloon": {
+        "latitude": 22.323467299999997,
+        "longitude": 114.21406755240673
+    },
+    "yau tsim mong district, kowloon": {
+        "latitude": 22.3074036,
+        "longitude": 114.16552591155013
+    },
+    "kwun tong district, kowloon": {
+        "latitude": 22.312937,
+        "longitude": 114.22561
+    },
+    "yau ma tei, kowloon": {
+        "latitude": 22.312364600000002,
+        "longitude": 114.17077886436581
+    },
+    "lai chi kok, kowloon": {
+        "latitude": 22.336524400000002,
+        "longitude": 114.1480691375744
+    },
+    "wong tai sin, kowloon": {
+        "latitude": 22.34165365,
+        "longitude": 114.19385869532955
+    },
+    "ap lei chau island": {
+        "latitude": 22.239866499999998,
+        "longitude": 114.15458326000936
+    },
+    "southern district island": {
+        "latitude": 22.2192627,
+        "longitude": 114.22522984854672
+    },
+    "central and western district island": {
+        "latitude": 22.27484785,
+        "longitude": 114.148724944187
+    },
+    "eastern district island": {
+        "latitude": 22.2730777,
+        "longitude": 114.23359377341592
+    },
+    "kowloon city, kowloon": {
+        "latitude": 22.3301595,
+        "longitude": 114.1899368
+    },
+    "lam tin, kowloon": {
+        "latitude": 22.30669805,
+        "longitude": 114.23293522594867
+    },
+    "sham shui po, kowloon": {
+        "latitude": 22.32819,
+        "longitude": 114.1608545
+    },
+    "kowloon tong, kowloon": {
+        "latitude": 22.336213,
+        "longitude": 114.1799105
+    },
+    "hung hom, kowloon": {
+        "latitude": 22.3028568,
+        "longitude": 114.18203242951043
+    },
+    "stanley island": {
+        "latitude": 22.2143908,
+        "longitude": 114.2159129
+    },
+    "san po kong, kowloon": {
+        "latitude": 22.3385456,
+        "longitude": 114.1973986
+    },
+    "cheung sha wan, kowloon": {
+        "latitude": 22.3355066,
+        "longitude": 114.1561596
+    },
+    "sham shui po district, kowloon": {
+        "latitude": 22.33125395,
+        "longitude": 114.15932119657994
+    },
+    "kwai tsing district, new territories": {
+        "latitude": 22.34100685,
+        "longitude": 114.10428549895929
+    },
+    "pok fu lam island": {
+        "latitude": 22.2613573,
+        "longitude": 114.1368089
+    },
+    "kowloon city district, kowloon": {
+        "latitude": 22.32179955,
+        "longitude": 114.18859418638175
+    },
+    "to kwa wan, kowloon": {
+        "latitude": 22.3167582,
+        "longitude": 114.1895402
+    },
+    "mei foo, kowloon": {
+        "latitude": 22.33880415,
+        "longitude": 114.13654883655086
+    },
+    "kwai fong, new territories": {
+        "latitude": 22.35682155,
+        "longitude": 114.12778832793332
+    },
+    "prince edward, kowloon": {
+        "latitude": 22.324586150000002,
+        "longitude": 114.16828150825188
+    },
+    "tsz wan shan, kowloon": {
+        "latitude": 22.3486715,
+        "longitude": 114.1999443
+    },
+    "tai kok tsui, kowloon": {
+        "latitude": 22.3207508,
+        "longitude": 114.1603513
+    },
+    "yau tong, kowloon": {
+        "latitude": 22.2975047,
+        "longitude": 114.2383245
+    },
+    "jordan, kowloon": {
+        "latitude": 22.304809900000002,
+        "longitude": 114.17171572242707
+    },
+    "happy valley island": {
+        "latitude": 22.267237,
+        "longitude": 114.1869671
+    },
+    "choi hung, kowloon": {
+        "latitude": 22.334905,
+        "longitude": 114.2091410851755
+    },
+    "taikoo shing island": {
+        "latitude": 22.287598250000002,
+        "longitude": 114.21520735567472
+    },
+    "shek mun": {
+        "latitude": 22.38773485,
+        "longitude": 114.20844513835665
+    },
+    "hong kong, wanchai": {
+        "latitude": 22.274611399999998,
+        "longitude": 114.17370876070615
+    },
+    "ma on shan": {
+        "latitude": 22.4228112,
+        "longitude": 114.2301911
+    },
+    "hong kong, hong kong island": {
+        "latitude": 22.2793278,
+        "longitude": 114.1628131
+    },
+    "hong kong, china": {
+        "latitude": 22.2793278,
+        "longitude": 114.1628131
+    },
+    "sai kung, tseung kwan o": {
+        "latitude": 22.3087855,
+        "longitude": 114.259633
+    },
+    "shenzhen (\u6df1\u5733)": {
+        "latitude": 22.555454,
+        "longitude": 114.0543297
+    },
+    "hong kong, hong kong island, causeway bay": {
+        "latitude": 22.280208,
+        "longitude": 114.1848407
+    },
+    "kwun tong, fanling": {
+        "latitude": 22.5002506,
+        "longitude": 114.1311868
+    },
+    "san po kong, wong tai sin": {
+        "latitude": 22.3415832,
+        "longitude": 114.1943553
+    },
+    "kowloon, kowloon bay": {
+        "latitude": 22.323467299999997,
+        "longitude": 114.21406755240673
+    },
+    "happy valley": {
+        "latitude": 22.267237,
+        "longitude": 114.1869671
+    },
+    "hong kong island, kowloon": {
+        "latitude": 22.3116452,
+        "longitude": 114.1767885
+    },
+    "western district": {
+        "latitude": 22.2858376,
+        "longitude": 114.134023
+    },
+    "kowloon, hunghom": {
+        "latitude": 22.305605649999997,
+        "longitude": 114.18559884240159
+    },
+    "central, sheung wan": {
+        "latitude": 22.2868701,
+        "longitude": 114.150267
+    },
+    "hong kong, shenzhen (\u6df1\u5733)": {
+        "latitude": 22.5352091,
+        "longitude": 113.9264015
+    },
+    "viet nam": {
+        "latitude": 13.2904027,
+        "longitude": 108.4265113
+    },
+    "asia pacific": {
+        "latitude": 34.8528895,
+        "longitude": -82.3573713
+    },
+    "clearwater bay": {
+        "latitude": 22.28467135,
+        "longitude": 114.2962714725592
+    },
+    "kwai chung, tsuen wan": {
+        "latitude": 22.3736065,
+        "longitude": 114.1178386
+    },
+    "hong kong island, wanchai": {
+        "latitude": 22.274611399999998,
+        "longitude": 114.17370876070615
+    },
+    "hong kong, kowloon bay": {
+        "latitude": 22.323467299999997,
+        "longitude": 114.21406755240673
+    },
+    "admiralty, central": {
+        "latitude": 22.2789208,
+        "longitude": 114.1644982
+    },
+    "hong kong island, quarry bay": {
+        "latitude": 22.2877545,
+        "longitude": 114.2149322
+    },
+    "hong kong, kwun tong": {
+        "latitude": 22.312937,
+        "longitude": 114.22561
+    },
+    "central, kowloon tong, mongkok": {
+        "latitude": 22.3197491,
+        "longitude": 114.1693644
+    },
+    "hong kong, singapore": {
+        "latitude": 22.244957149999998,
+        "longitude": 114.1680711254483
+    },
+    "hong kong, overseas": {
+        "latitude": 22.277874699999998,
+        "longitude": 114.17285292669524
+    },
+    "mongkok, tsuen wan": {
+        "latitude": 22.3159449,
+        "longitude": 114.1700132
+    },
+    "fotan": {
+        "latitude": 22.39518655,
+        "longitude": 114.198122891233
+    },
+    "shenzhen (\u6df1\u5733), china": {
+        "latitude": 22.555454,
+        "longitude": 114.0543297
+    },
+    "jordan, kwun tong": {
+        "latitude": 22.304809900000002,
+        "longitude": 114.17171572242707
+    },
+    "tokwawan": {
+        "latitude": 22.3167582,
+        "longitude": 114.1895402
+    },
+    "tai wai": {
+        "latitude": 22.3730706,
+        "longitude": 114.17888738921748
+    },
+    "shanghai (\u4e0a\u6d77)": {
+        "latitude": 31.2252985,
+        "longitude": 121.4890497
+    },
+    "kowloon, kwun tong": {
+        "latitude": 22.312937,
+        "longitude": 114.22561
+    },
+    "tsz wan shan": {
+        "latitude": 22.3486715,
+        "longitude": 114.1999443
+    },
+    "kwai chung, kwai fong, kwai hing": {
+        "latitude": 22.3630553,
+        "longitude": 114.1311840162384
+    },
+    "hong kong island, southern district, wong chuk hang": {
+        "latitude": 22.2485106,
+        "longitude": 114.1667025
+    },
+    "hong kong, lai chi kok": {
+        "latitude": 22.336524400000002,
+        "longitude": 114.1480691375744
+    },
+    "quarry bay, taikoo shing": {
+        "latitude": 22.287598250000002,
+        "longitude": 114.21520735567472
+    },
+    "philippines": {
+        "latitude": 12.7503486,
+        "longitude": 122.7312101
+    },
+    "sai ying pun, western district": {
+        "latitude": 22.286121,
+        "longitude": 114.1420862
+    },
+    "hong kong island, eastern district, western district": {
+        "latitude": 22.2858376,
+        "longitude": 114.134023
+    },
+    "china, overseas": {
+        "latitude": 25.6556085,
+        "longitude": 119.45372245270141
+    },
+    "fortress hill, north point": {
+        "latitude": 22.2875631,
+        "longitude": 114.1933149
+    },
+    "hong kong island, causeway bay": {
+        "latitude": 22.280208,
+        "longitude": 114.1848407
+    },
+    "hong kong island, tseung kwan o": {
+        "latitude": 22.3087855,
+        "longitude": 114.259633
+    },
+    "guangzhou (\u5ee3\u5dde)": {
+        "latitude": 23.15280855,
+        "longitude": 113.2517806162732
+    },
+    "central, southern district": {
+        "latitude": 22.2192627,
+        "longitude": 114.22522984854672
+    },
+    "lantau": {
+        "latitude": 22.27146865,
+        "longitude": 113.94422320296745
+    },
+    "new territories, china": {
+        "latitude": 22.4300716,
+        "longitude": 114.0724197
+    },
+    "diamond hill": {
+        "latitude": 22.33961875,
+        "longitude": 114.20118940612683
+    },
+    "north point, kwun tong": {
+        "latitude": 22.312937,
+        "longitude": 114.22561
+    },
+    "cheung sha wan, lai chi kok": {
+        "latitude": 22.336524400000002,
+        "longitude": 114.1480691375744
+    },
+    "central, western district": {
+        "latitude": 22.27484785,
+        "longitude": 114.148724944187
+    },
+    "hong kong, hong kong island, kowloon": {
+        "latitude": 22.3116452,
+        "longitude": 114.1767885
+    },
+    "new territories, shatin": {
+        "latitude": 22.38668495,
+        "longitude": 114.2035240537273
+    },
+    "hong kong, hong kong island, wanchai": {
+        "latitude": 22.274611399999998,
+        "longitude": 114.17370876070615
+    },
+    "hong kong, kowloon, kwun tong": {
+        "latitude": 22.312937,
+        "longitude": 114.22561
+    },
+    "hong kong, kowloon, lai chi kok": {
+        "latitude": 22.336524400000002,
+        "longitude": 114.1480691375744
+    },
+    "hong kong, kowloon, kowloon bay": {
+        "latitude": 22.323467299999997,
+        "longitude": 114.21406755240673
+    },
+    "hong kong, kowloon": {
+        "latitude": 22.3116452,
+        "longitude": 114.1767885
+    },
+    "hong kong, central": {
+        "latitude": 22.2850394,
+        "longitude": 114.1583819
+    },
+    "chai wan, siu sai wan": {
+        "latitude": 22.269840799999997,
+        "longitude": 114.24615558745333
+    },
+    "kwai chung, kwai hing": {
+        "latitude": 22.3630553,
+        "longitude": 114.1311840162384
+    },
+    "hong kong, tsuen wan": {
+        "latitude": 22.3716605,
+        "longitude": 114.1134699
+    },
+    "hong kong, tung chung": {
+        "latitude": 22.289257499999998,
+        "longitude": 113.94149103141196
+    },
+    "kowloon, kowloon bay, kowloon tong": {
+        "latitude": 22.336213,
+        "longitude": 114.1799105
+    },
+    "wanchai, kowloon": {
+        "latitude": 22.3114598,
+        "longitude": 114.16894860171908
+    },
+    "northern district": {
+        "latitude": 22.516949349999997,
+        "longitude": 114.21359265126003
+    }
+}

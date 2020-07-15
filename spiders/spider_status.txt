@@ -1,0 +1,13 @@
+adecco - blocks, only 254 jobs in total, not worth fixing
+cpjobs - ok
+ctgoodjobs - blocked
+efc - ok
+glassdoor - ok
+indeed - doesn't follow pages (indeed_update seems fine)
+jobsdb - ok
+jora - ok
+linkedin - blocked
+michaelpage - ok
+pagepersonnel - ok
+randstad - ok
+recruithk - ok

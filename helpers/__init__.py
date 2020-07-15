@@ -1,0 +1,1 @@
+from .locator import fill_location_item
