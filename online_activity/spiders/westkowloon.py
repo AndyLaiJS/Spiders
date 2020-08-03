@@ -3,8 +3,30 @@ import scrapy
 import re
 from datetime import datetime
 import pymongo
+from scrapy.http import HtmlResponse
 
-data = {}
+data = {
+    'event_name_chi': '',
+    'event_name_eng': '',
+    'start_date': '',
+    'end_date': '',
+    'description_chi': '',
+    'description_eng': '',
+    'event_type_chi': '',
+    'event_type_eng': '',
+    'location_chi': '',
+    'location_eng': '',
+    'fee': '',
+    'organiser_chi': '',
+    'organiser_eng': '',
+    'source': '',
+    'link_chi': '',
+    'link_eng': '',
+}
+
+client = pymongo.MongoClient('127.0.0.1', 27017)
+db = client.event_crawlers
+collection = db.events
 
 class WestkowloonSpider(scrapy.Spider):
     name = 'westkowloon'
@@ -19,64 +41,63 @@ class WestkowloonSpider(scrapy.Spider):
         return string
 
     def parse(self, response):
-        names = response.xpath("//*[@id='main']/div[4]/section/div/ul//h4/a/text()").extract()
-        desc = response.xpath("//*[@id='main']/div[4]/section/div/ul/li/div/div[2]/p[2]").extract()
         links = response.xpath("//*[@id='main']/div[4]/section/div/ul//h4/a/@href").extract()
-
-        for i in range(len(names)):
-            # Clean the text
-            names[i] = " ".join(names[i].split())
-            # data["event_name_eng"] = list_of_names[i]
-
-        for i in range(len(desc)):
-            desc[i] = re.sub("</?[^>]*>", "", desc[i])
-            # data["description_end"] = word
-
-        print(len(names), len(desc), len(links))
-        print("\n\n\n\n\n\n\n\n")
         for i in range(len(links)):
-            # data["link_eng"] = url
-            data["event_name_eng"] = names[i]
-            data["description_end"] = desc[i]
             yield scrapy.Request(links[i], callback=self.parse_events)
-        # data.clear()
 
     def parse_events(self, response):
+        
+        # TO-DO : Precaution mechanism
+
+        name = response.xpath("//*[@id='main']/div[2]/div/header/div/h1/text()").extract()
+        description = response.xpath("//*[@id='main']/section[1]/article/div/div/p[1]").extract()
         location = response.xpath("//*[@id='main']/section[1]/aside/div/dl[dt/text()='Venue']/dd").extract()
         dates = response.xpath("//*[@id='main']/section[1]/aside/div/dl[dt/text()='Date']/dd").extract()
+        fee = response.xpath("//*[@id='main']/section[1]/article/div[1]/div/p[strong/text()[contains(., 'Tickets:') or contains(., 'Fee:') or contains(., 'Free')]]/text()").extract()
+        description = self.cleanText(description)
         location = self.cleanText(location)
         dates = self.cleanText(dates)
+        fee = self.cleanText(fee)
+        
         if (dates != ""):
             dates = dates.split(" to ")
             start_date = datetime.strptime(str(dates[0]), "%d.%m.%Y")
-            end_date = datetime.strptime(str(dates[1]), "%d.%m.%Y")
+            try:
+                end_date = datetime.strptime(str(dates[1]), "%d.%m.%Y")
+            except:
+                end_date = ""
         else:
             start_date = ""
             end_date = ""
-        data["link_eng"] = response.url
+
+        data["event_name_eng"] = name[0]
+        data["description_eng"] = description
         data["start_date"] = start_date
         data["end_date"] = end_date
         data["location_eng"] = location
-        client = pymongo.MongoClient('127.0.0.1', 27017)
-        db = client.event_crawlers
-        collection = db.events
-        collection.insert(data)
-        data.clear()
-        pass
+        data["fee"] = fee
+        data["link_eng"] = response.url
 
-# event_name_chi
-# event_name_eng √ 
-# start_date √
-# end_date √
-# description_chi
-# description_eng √ 
-# event_type_chi
-# event_type_eng 
-# location_chi
-# location_eng √
-# fee
-# organiser_chi
-# organiser_eng
-# source √
-# link_chi
-# link_eng √
+        req1 = scrapy.Request(response.url.replace('/en/', '/tc/'), callback=self.parse_cn, meta=data)
+        yield req1
+
+    def parse_cn(self, response):
+        data = response.meta
+
+        name_chi = response.xpath("//*[@id='main']/div[2]/div/header/div/h1/text()").extract()
+        description_chi = response.xpath("//*[@id='main']/section[1]/article/div/div/p[1]").extract()
+        location_chi = response.xpath("//*[@id='main']/section[1]/aside/div/dl[dt/text()='地點']/dd").extract()
+        description_chi = self.cleanText(description_chi)
+        location_chi = self.cleanText(location_chi)
+        data["event_name_chi"] = name_chi[0]
+        data["description_chi"] = description_chi
+        data["location_chi"] = location_chi
+        data["event_type_chi"] = ""
+        data["event_type_eng"] = ""
+        data["organiser_chi"] = ""
+        data["organiser_eng"] = ""
+        data["source"] = ""
+        data["link_chi"] = response.url
+        
+        collection.insert(data)
+        yield data
