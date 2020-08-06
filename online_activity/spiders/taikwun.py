@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from datetime import datetime
+import re
 import pymongo
 from scrapy.http import HtmlResponse
 
@@ -58,8 +59,6 @@ class TaikwunSpider(scrapy.Spider):
         fee = response.xpath("//*[@id='programme-content']/div[1]/div/div[1]/div[3]/div/div[2]/div[1]/text()").extract()
         desc = response.xpath("//*[@id='programme-content']/div[2]/section/div/article[1]/div[2]").extract()
 
-        # I need the below for the cleanText to be effective. Otherwise the first character is gone
-        print("\n\n\n")
         if (len(dates) == 0):
             dates = ""
             start_date = ""
