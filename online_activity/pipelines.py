@@ -14,21 +14,28 @@ class MongoDBPipeline(object):
         self.mongo_password = ""
         self.mongo_auth = "event_crawler"
         # self.mongo_uri = "{host}:{port}".format(host=self.mongo_host, port=self.mongo_port)
-        self.mongo_db = "event_crawler"
+        self.mongo_db = "event_crawlers"
         self.collection_name = 'events'
 
-        self.connection = pymongo.MongoClient(
+        self.client = pymongo.MongoClient(
             self.mongo_host,
             self.mongo_port,
-            username=self.mongo_user,
-            password=self.mongo_password,
-            authSource=self.mongo_auth,
+            # username=self.mongo_user,
+            # password=self.mongo_password,
+            # authSource=self.mongo_auth,
         )
-        self.db = self.connection[self.mongo_db]
+        self.db = self.client[self.mongo_db]
         self.collection = self.db[self.collection_name]
-    
+        
     def close_spider(self, spider):
-        self.connection.close()
+        self.client.close()
 
     def process_item(self, item, spider):
+        
+        self.collection.insert(dict(item))
+        print("\n\n\n")
+        print(dict(item))
+        print("\n\n\n")
+        print(self.collection)
+        print("ok")
         return item
