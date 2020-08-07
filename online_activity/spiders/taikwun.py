@@ -2,7 +2,6 @@
 import scrapy
 from datetime import datetime
 import re
-import pymongo
 from scrapy.http import HtmlResponse
 
 data = {
@@ -23,10 +22,6 @@ data = {
     'link_chi': '',
     'link_eng': '',
 }
-
-client = pymongo.MongoClient('127.0.0.1', 27017)
-db = client.event_crawlers
-collection = db.events
 
 class TaikwunSpider(scrapy.Spider):
     name = 'taikwun'
@@ -122,6 +117,9 @@ class TaikwunSpider(scrapy.Spider):
         data["organiser_eng"] = ""
         data["source"] = ""
         data["link_chi"] = response.url
+        del data["depth"]
+        del data["download_timeout"]
+        del data["download_slot"]
+        del data["download_latency"]
         
-        collection.insert(data)
         yield data

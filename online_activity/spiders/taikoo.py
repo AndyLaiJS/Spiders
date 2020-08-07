@@ -2,7 +2,6 @@
 import scrapy
 import re
 from datetime import datetime
-import pymongo
 
 data = {
     'event_name_chi': '',
@@ -22,10 +21,6 @@ data = {
     'link_chi': '',
     'link_eng': '',
 }
-
-client = pymongo.MongoClient('127.0.0.1', 27017)
-db = client.event_crawlers
-collection = db.events
 
 class TaikooSpider(scrapy.Spider):
     name = 'taikoo'
@@ -121,6 +116,9 @@ class TaikooSpider(scrapy.Spider):
         data["organiser_eng"] = ""
         data["source"] = ""
         data["link_chi"] = response.url
+        del data["depth"]
+        del data["download_timeout"]
+        del data["download_slot"]
+        del data["download_latency"]
         
-        collection.insert(data)
         yield data
