@@ -115,7 +115,7 @@ class TaikwunSpider(scrapy.Spider):
         data["event_type_eng"] = ""
         data["organiser_chi"] = ""
         data["organiser_eng"] = ""
-        data["source"] = ""
+        data["source"] = "Tai Kwun"
         data["link_chi"] = response.url
         del data["depth"]
         del data["download_timeout"]

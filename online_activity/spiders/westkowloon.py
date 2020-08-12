@@ -91,7 +91,7 @@ class WestkowloonSpider(scrapy.Spider):
         data["event_type_eng"] = ""
         data["organiser_chi"] = ""
         data["organiser_eng"] = ""
-        data["source"] = ""
+        data["source"] = "West Kowloon Cultural District"
         data["link_chi"] = response.url
         del data["depth"]
         del data["download_timeout"]
