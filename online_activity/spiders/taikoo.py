@@ -8,6 +8,7 @@ data = {
     'event_name_eng': '',
     'start_date': '',
     'end_date': '',
+    'fetch_date': '',
     'description_chi': '',
     'description_eng': '',
     'event_type_chi': '',
@@ -74,6 +75,7 @@ class TaikooSpider(scrapy.Spider):
         data["description_eng"] = combined_desc
         data["start_date"] = start_date
         data["end_date"] = end_date
+        data["fetch_date"] = datetime.now()
         data["location_eng"] = location
         data["fee"] = fee
         data["link_eng"] = response.url
