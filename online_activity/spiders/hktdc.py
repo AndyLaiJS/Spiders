@@ -84,12 +84,7 @@ class HKTBSpider(scrapy.Spider):
         for i in list_of_categories:
             for j in i:
                 if list_of_data_lower.count(j) > 0:
-                    if j == 'date:':
-                        date = list_of_data[list_of_data_lower.index(j) + 1]
-                        new_data['start_date'] = date[:date.index(',')]
-                        new_data['end_date'] = date[:date.index(',')]
-                    else:
-                        new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
+                    new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
         
         yield scrapy.Request(response.url.replace('/tc/', '/en/'), callback=self.parse_events_en, meta=new_data)
 
@@ -118,8 +113,13 @@ class HKTBSpider(scrapy.Spider):
                 if list_of_data_lower.count(j) > 0:
                     if j == 'date:':
                         date = list_of_data[list_of_data_lower.index(j) + 1]
-                        new_data['start_date'] = date[:date.index(',')]
-                        new_data['end_date'] = date[:date.index(',')]
+                        date = date[:date.index('(') - 1]
+                        try:
+                            new_data['start_date'] = datetime.strptime(date, "%d %b %Y")
+                            new_data['end_date'] = datetime.strptime(date, "%d %b %Y")
+                        except:
+                            new_data['start_date'] = datetime.strptime(date, "%d %B %Y")
+                            new_data['end_date'] = datetime.strptime(date, "%d %B %Y")
                     else:
                         new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
 
