@@ -1,9 +1,9 @@
 import pymongo
 import scrapy
 from datetime import datetime
-client = pymongo.MongoClient('127.0.0.1', 27017)
-db = client.event_crawlers
-collection = db.pmq
+#client = pymongo.MongoClient('127.0.0.1', 27017)
+#db = client.event_crawlers
+#collection = db.pmq
 
 list_of_categories = [['date'],
                      ['event_type_eng', 'back to monthly calendar'],
@@ -154,4 +154,5 @@ class HKTBSpider(scrapy.Spider):
         del new_data['download_timeout']
         del new_data['download_slot']
         del new_data['download_latency']
-        collection.insert(new_data)
+        #collection.insert(new_data)
+        yield new_data
