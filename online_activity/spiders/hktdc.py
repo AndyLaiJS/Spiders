@@ -1,9 +1,9 @@
 import pymongo
 import scrapy
 from datetime import datetime
-client = pymongo.MongoClient('127.0.0.1', 27017)
-db = client.event_crawlers
-collection = db.hktdc
+#client = pymongo.MongoClient('127.0.0.1', 27017)
+#db = client.event_crawlers
+#collection = db.hktdc
 
 list_of_categories = [['date', 'date:'],
                      ['description_eng', 'description:'], 
@@ -127,4 +127,5 @@ class HKTBSpider(scrapy.Spider):
         del new_data['download_timeout']
         del new_data['download_slot']
         del new_data['download_latency']
-        collection.insert(new_data)
+        #collection.insert(new_data)
+        yield new_data
