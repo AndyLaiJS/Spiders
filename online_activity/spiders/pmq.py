@@ -23,11 +23,12 @@ class HKTBSpider(scrapy.Spider):
     
     def cleanText(self, list_of_data):
         for i in range(len(list_of_data)):
+            list_of_data[i] = list_of_data[i].replace('  ', ' ')
             list_of_data[i] = list_of_data[i].replace('  ', '')
             list_of_data[i] = list_of_data[i].replace('\n', '')
             if len(list_of_data[i]) > 0 and list_of_data[i][0] == ' ':
                 list_of_data[i] = list_of_data[i][1:]
-        list_of_data = [i for i in list_of_data if i != '']
+        list_of_data = [i for i in list_of_data if i != '' and i != ' ']
         return list_of_data
 
     def parse(self, response):
@@ -65,21 +66,21 @@ class HKTBSpider(scrapy.Spider):
         new_data = {
             'event_name_chi': '',
             'event_name_eng': '',
-            'start_date': '',
-            'end_date': '',
+            'start_date': 'N/A',
+            'end_date': 'N/A',
             'fetch_date': '',
-            'description_chi': '',
-            'description_eng': '',
-            'event_type_chi': '',
-            'event_type_eng': '',
+            'description_chi': 'N/A',
+            'description_eng': 'N/A',
+            'event_type_chi': 'N/A',
+            'event_type_eng': 'N/A',
             'location_chi': 'N/A',
             'location_eng': 'N/A',
             'fee': 'N/A',
             'organiser_chi': 'N/A',
             'organiser_eng': 'N/A',
             'source': 'PMQ',
-            'link_chi': '',
-            'link_eng': '',
+            'link_chi': 'N/A',
+            'link_eng': 'N/A',
         }
 
         new_data['fetch_date'] = datetime.now()
@@ -93,18 +94,12 @@ class HKTBSpider(scrapy.Spider):
         for i in list_of_categories:
             for j in i:
                 if list_of_data_lower.count(j) > 0:
-                    if j == 'date':
-                        date = list_of_data[list_of_data_lower.index(j) + 1]
-                        if date.count('–') > 0:
-                            new_data['start_date'] = date[:date.index('–') - 1]
-                            new_data['end_date'] = date[date.index('–') + 2:]
-                        else:
-                            new_data['start_date'] = date
-                            new_data['end_date'] = date
+                    if j == '返回查看活動一覧' and list_of_data[list_of_data_lower.index(j) + 2] == '日期':
+                        new_data['event_name_chi'] = list_of_data[list_of_data_lower.index(j) + 1]
                     else:
+                        if j == '返回查看活動一覧':
+                            new_data['event_name_chi'] = list_of_data[list_of_data_lower.index(j) + 2]
                         new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
-                    if j == '返回查看活動一覧':
-                        new_data['event_name_chi'] = list_of_data[list_of_data_lower.index(j) + 2]
         
         yield scrapy.Request(response.url.replace('?lang=ch', '?lang=en'), callback=self.parse_events_en, meta=new_data)
 
@@ -139,16 +134,74 @@ class HKTBSpider(scrapy.Spider):
                 if list_of_data_lower.count(j) > 0:
                     if j == 'date':
                         date = list_of_data[list_of_data_lower.index(j) + 1]
-                        if date.count('–') > 0:
-                            new_data['start_date'] = date[:date.index('–') - 1]
-                            new_data['end_date'] = date[date.index('–') + 2:]
+                        if date.count('–') > 0 or date.count('to') > 0:
+                            if date.count('–') > 0:
+                                start_date = date[:date.index('–')]
+                                end_date = date[date.index('–') + 1:]
+                            else:
+                                start_date = date[:date.index('to')]
+                                end_date = date[date.index('to') + 2:]
+                            if start_date[0] == ' ':
+                                start_date = start_date[1:]
+                            if start_date[-1] == ' ':
+                                start_date = start_date[:-1]
+                            if end_date[0] == ' ':
+                                end_date = end_date[1:]
+                            if end_date[-1] == ' ':
+                                end_date = end_date[:-1]
                         else:
-                            new_data['start_date'] = date
-                            new_data['end_date'] = date
+                            start_date = date
+                            end_date = date
+
+                        temp = start_date.lower()
+                        if temp.count('now') > 0:
+                            new_data['start_date'] = datetime.now()
+                        else:
+                            if start_date.count('(') > 0:
+                                start_date = start_date[:start_date.index('(') - 1]
+                                if start_date[-1] == ' ':
+                                    start_date = start_date[:-1]
+                            else:
+                                start_date = '1 ' + start_date
+                            try:
+                                new_data['start_date'] = datetime.strptime(start_date, "%d %b %Y")
+                            except:
+                                new_data['start_date'] = datetime.strptime(start_date, "%d %B %Y")
+
+                        temp = end_date.lower()
+                        if temp.count('now') > 0 or temp.count('onward') > 0:
+                            new_data['end_date'] = ''
+                        else:
+                            if end_date.count('(') > 0:
+                                end_date = end_date[:end_date.index('(') - 1]
+                            else:
+                                temp_mon = end_date.split()[0][:3].lower()
+                                month_num = {
+                                    'jan': '31',
+                                    'feb': '28',
+                                    'mar': '31',
+                                    'apr': '30',
+                                    'may': '31',
+                                    'jun': '30',
+                                    'jul': '31',
+                                    'aug': '31',
+                                    'sep': '30',
+                                    'oct': '31',
+                                    'nov': '30',
+                                    'dec': '31'
+                                }
+                                end_date = month_num[temp_mon] + ' ' + end_date
+                            try:
+                                new_data['end_date'] = datetime.strptime(end_date, "%d %b %Y")
+                            except:
+                                new_data['end_date'] = datetime.strptime(end_date, "%d %B %Y")
+
+                    elif j == 'back to monthly calendar' and list_of_data[list_of_data_lower.index(j) + 2] == 'DATE':
+                        new_data['event_name_eng'] = list_of_data[list_of_data_lower.index(j) + 1]
                     else:
+                        if j == 'back to monthly calendar':
+                            new_data['event_name_eng'] = list_of_data[list_of_data_lower.index(j) + 2]
                         new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
-                    if j == 'back to monthly calendar':
-                        new_data['event_name_eng'] = list_of_data[list_of_data_lower.index(j) + 2]
 
         del new_data['depth']
         del new_data['download_timeout']
