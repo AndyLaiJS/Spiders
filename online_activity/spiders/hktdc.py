@@ -1,5 +1,6 @@
 import pymongo
 import scrapy
+from datetime import datetime
 client = pymongo.MongoClient('127.0.0.1', 27017)
 db = client.event_crawlers
 collection = db.hktdc
@@ -47,6 +48,7 @@ class HKTBSpider(scrapy.Spider):
             'event_name_eng': '',
             'start_date': '',
             'end_date': '',
+            'fetch_date': '',
             'description_chi': 'N/A',
             'description_eng': 'N/A',
             'event_type_chi': '',
@@ -60,6 +62,8 @@ class HKTBSpider(scrapy.Spider):
             'link_chi': '',
             'link_eng': '',
         }
+
+        new_data['fetch_date'] = datetime.now()
         
         list_of_data = response.xpath('//*[@class="background_white_padding_middle"]//text()').extract()
         
