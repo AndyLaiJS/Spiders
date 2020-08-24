@@ -44,12 +44,14 @@ class TaikooSpider(scrapy.Spider):
             yield scrapy.Request(link, callback=self.parse_events)
 
     def parse_events(self, response):
+        date_pattern = r"\d{1,2}(?:st|nd|rd|th)\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4}|\d{1,2}(?:st|nd|rd|th)\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4}|\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|((Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4})|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)"
         name = response.xpath("//*[@id='mainform']/div[5]//h1//text()").extract()
         description = response.xpath("//*[@id='mainform']//div[@class='event-detail__copy body-copy']//text()").extract()
         location = ""
         fee = ""
         start_date = ""
         end_date = ""
+        
         for i in range(len(description)):
             description[i] = self.cleanText(description[i]).strip()
                 
@@ -69,7 +71,81 @@ class TaikooSpider(scrapy.Spider):
         combined_desc = ""
         for word in description:
             combined_desc += word
+        print("\n\n\n")
+        print(response.url)
+        print(combined_desc)
+        matches = re.finditer(date_pattern, combined_desc, re.MULTILINE)
+        year_from_link = re.finditer(r"\d{4}", response.url, re.MULTILINE)
 
+        the_yr = re.findall(r"\d{4}", combined_desc)
+        if (len(the_yr) == 0):
+            pass
+        else:
+            the_yr = max(the_yr)
+        # for i in range(len(dates)):
+        #     the_yr = re.findall(r"\d{4}", dates[i])
+        
+        for l_yr in year_from_link:
+            l_yr = l_yr.group()
+        
+            try:
+                if (the_yr < l_yr):
+                    the_yr = l_yr
+            except:
+                the_yr = l_yr
+
+        print("the year is : ", end="")
+        print(the_yr)
+
+        dates = []
+        for match in matches:
+            match = match.group()
+            # remove date ordinals
+            match = re.sub(r'(\d)(st|nd|rd|th)', r'\1', match)
+            dates.append(match)
+            # print(match)
+
+        for i in range(len(dates)):
+            if (not re.match(r"\d{1,2}", dates[i])):
+                dates[i] = "1 " + dates[i]
+            if (not re.search(r"\d{4}", dates[i])):
+                try:
+                    dates[i] += " " + the_yr
+                except:
+                    dates[i] += " 2020"
+        
+        print("The dates are: ")
+        for d in dates:
+            print(d)
+        
+        for i in range(len(dates)):
+            try:
+                dates[i] = datetime.strptime(dates[i], "%d %b %Y")
+            except:
+                dates[i] = datetime.strptime(dates[i], "%d %B %Y")
+
+        if (len(dates) == 1):
+            start_date = dates[0]
+        else:
+            try:
+                smol = dates[0]
+                for d in dates:
+                    if d <= smol:
+                        smol = d
+                start_date = smol
+                larg = dates[0]
+                for d in dates:
+                    if d >= larg:
+                        larg = d
+                end_date = larg
+            except:
+                pass
+        
+        print("Start and end date are: ")
+        print(start_date)
+        print(end_date)
+
+        print("\n\n\n")
         # description = self.cleanText(description)
         data["event_name_eng"] = name[0]
         data["description_eng"] = combined_desc
@@ -123,4 +199,4 @@ class TaikooSpider(scrapy.Spider):
         del data["download_slot"]
         del data["download_latency"]
         
-        yield data
+        # yield data
