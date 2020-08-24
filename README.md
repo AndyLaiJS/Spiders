@@ -8,7 +8,7 @@ These are web crawlers to collect job ads posts from different websites.
 
 ## Websites TO-DO
 - [Hong Kong Convention and Exhibition Center](https://www.hkcec.com)
-- [Hong Kong Tourism Board](https://www.discoverhongkong.com/us/index.html)
+- [Hong Kong Tourism Board](https://www.discoverhongkong.com/us/index.html) (In progress)
 - [Hong Kong Trade Development Council](https://www.hktdc.com) (In progress)
 - [Leisure and Culture Services Development](https://www.lcsd.gov.hk/en/)
 - [West Kowloon Cultural District Authority](https://www.westkowloon.hk/en) (In progress)

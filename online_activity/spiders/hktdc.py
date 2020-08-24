@@ -1,8 +1,9 @@
 import pymongo
 import scrapy
-client = pymongo.MongoClient('127.0.0.1', 27017)
-db = client.event_crawlers
-collection = db.hktdc
+from datetime import datetime
+#client = pymongo.MongoClient('127.0.0.1', 27017)
+#db = client.event_crawlers
+#collection = db.hktdc
 
 list_of_categories = [['date', 'date:'],
                      ['description_eng', 'description:'], 
@@ -47,6 +48,7 @@ class HKTBSpider(scrapy.Spider):
             'event_name_eng': '',
             'start_date': '',
             'end_date': '',
+            'fetch_date': '',
             'description_chi': 'N/A',
             'description_eng': 'N/A',
             'event_type_chi': '',
@@ -60,6 +62,8 @@ class HKTBSpider(scrapy.Spider):
             'link_chi': '',
             'link_eng': '',
         }
+
+        new_data['fetch_date'] = datetime.now()
         
         list_of_data = response.xpath('//*[@class="background_white_padding_middle"]//text()').extract()
         
@@ -80,12 +84,7 @@ class HKTBSpider(scrapy.Spider):
         for i in list_of_categories:
             for j in i:
                 if list_of_data_lower.count(j) > 0:
-                    if j == 'date:':
-                        date = list_of_data[list_of_data_lower.index(j) + 1]
-                        new_data['start_date'] = date[:date.index(',')]
-                        new_data['end_date'] = date[:date.index(',')]
-                    else:
-                        new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
+                    new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
         
         yield scrapy.Request(response.url.replace('/tc/', '/en/'), callback=self.parse_events_en, meta=new_data)
 
@@ -114,8 +113,13 @@ class HKTBSpider(scrapy.Spider):
                 if list_of_data_lower.count(j) > 0:
                     if j == 'date:':
                         date = list_of_data[list_of_data_lower.index(j) + 1]
-                        new_data['start_date'] = date[:date.index(',')]
-                        new_data['end_date'] = date[:date.index(',')]
+                        date = date[:date.index('(') - 1]
+                        try:
+                            new_data['start_date'] = datetime.strptime(date, "%d %b %Y")
+                            new_data['end_date'] = datetime.strptime(date, "%d %b %Y")
+                        except:
+                            new_data['start_date'] = datetime.strptime(date, "%d %B %Y")
+                            new_data['end_date'] = datetime.strptime(date, "%d %B %Y")
                     else:
                         new_data[i[0]] = list_of_data[list_of_data_lower.index(j) + 1]
 
@@ -123,4 +127,5 @@ class HKTBSpider(scrapy.Spider):
         del new_data['download_timeout']
         del new_data['download_slot']
         del new_data['download_latency']
-        collection.insert(new_data)
+        #collection.insert(new_data)
+        yield new_data
