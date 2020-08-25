@@ -44,7 +44,7 @@ class TaikooSpider(scrapy.Spider):
             yield scrapy.Request(link, callback=self.parse_events)
 
     def parse_events(self, response):
-        date_pattern = r"\d{1,2}(?:st|nd|rd|th)\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4}|\d{1,2}(?:st|nd|rd|th)\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4}|\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|((Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4})|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)"
+        date_pattern = r"\d{1,2}(\s+)?[-](\s+)?\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)([,])?(\s+)?\d{4}|\d{1,2}(\s+)?[-](\s+)?\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4}|\d{1,2}(\s+)?[-](\s+)?\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|\d{1,2}(?:st|nd|rd|th)\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4}|\d{1,2}(?:st|nd|rd|th)\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4}|\d{1,2}\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)|((Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)\s+\d{4})|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)"
         name = response.xpath("//*[@id='mainform']/div[5]//h1//text()").extract()
         description = response.xpath("//*[@id='mainform']//div[@class='event-detail__copy body-copy']//text()").extract()
         location = ""
@@ -71,9 +71,9 @@ class TaikooSpider(scrapy.Spider):
         combined_desc = ""
         for word in description:
             combined_desc += word
-        print("\n\n\n")
-        print(response.url)
-        print(combined_desc)
+        # print("\n\n\n")
+        # print(response.url)
+        # print(combined_desc)
         matches = re.finditer(date_pattern, combined_desc, re.MULTILINE)
         year_from_link = re.finditer(r"\d{4}", response.url, re.MULTILINE)
 
@@ -93,9 +93,16 @@ class TaikooSpider(scrapy.Spider):
                     the_yr = l_yr
             except:
                 the_yr = l_yr
+        
+        try:
+            if int(the_yr[0]) <= 2000:
+                the_yr = str(datetime.now().year)
+        except:
+            pass
 
         print("the year is : ", end="")
         print(the_yr)
+        
 
         dates = []
         for match in matches:
@@ -112,11 +119,37 @@ class TaikooSpider(scrapy.Spider):
                 try:
                     dates[i] += " " + the_yr
                 except:
-                    dates[i] += " 2020"
+                    dates[i] += " " + str(datetime.now().year)
         
-        print("The dates are: ")
-        for d in dates:
-            print(d)
+        # print("The dates are: ")
+        
+        # for d in dates:
+        #     print(d)
+
+        # Handle all the dates with a "-"
+        for d in range(len(dates)):
+            if "-" in dates[d]:
+                the_month = dates[d].split("-")[1].split()[1]
+                try:
+                    the_year = dates[d].split("-")[1].split()[2]
+                except:
+                    pass
+                for i in dates[d].split("-"):
+                    if len(i.split()) == 1:
+                        the_day = i.strip()
+                        new_date = the_day + " " + the_month
+                        if (the_year != None):
+                            new_date += " " + the_year
+                        # put the newly formed date from the one containing "-" into dates list
+                        dates.append(new_date)
+                        new_date = ""
+                        index = 0
+                # clean the date containing the -
+                dates[d] = dates[d].split("-")[1].strip()
+                        
+        # print("The new processed dates are: ")
+        # for d in dates:
+        #     print(d)
         
         for i in range(len(dates)):
             try:
@@ -141,11 +174,11 @@ class TaikooSpider(scrapy.Spider):
             except:
                 pass
         
-        print("Start and end date are: ")
-        print(start_date)
-        print(end_date)
+        # print("Start and end date are: ")
+        # print(start_date)
+        # print(end_date)
 
-        print("\n\n\n")
+        # print("\n\n\n")
         # description = self.cleanText(description)
         data["event_name_eng"] = name[0]
         data["description_eng"] = combined_desc
@@ -199,4 +232,4 @@ class TaikooSpider(scrapy.Spider):
         del data["download_slot"]
         del data["download_latency"]
         
-        # yield data
+        yield data
