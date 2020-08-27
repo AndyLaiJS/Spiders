@@ -26,6 +26,7 @@ data = {
 }
 
 count = 0
+scrap_fee = False
 
 class HkfaSpider(scrapy.Spider):
     name = 'hkfa'
@@ -57,14 +58,14 @@ class HkfaSpider(scrapy.Spider):
 
         # # Easier to handle these data directly using Selenium syntaxes - there was a consistent xpath 
         urls = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']//a")
-        name = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() mod 3 = 0]")
+        # name = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() mod 3 = 0]")
         # date = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() = 1 or position() mod 6 = 0]")
-        price = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() mod 4 = 0]")
+        # price = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() mod 4 = 0]")
         
         # data["fetch_date"] = datetime.now()
 
-        for i in range(len(name)):
-            test.append(name[i].text.replace("\n", ", "))
+        # for i in range(len(name)):
+        #     test.append(name[i].text.replace("\n", ", "))
         # # data["event_name_eng"] = name
 
         # # Cleanup of the scrape data for dates happens within this for loop
@@ -82,8 +83,8 @@ class HkfaSpider(scrapy.Spider):
         #         else:
         #             data["end_date"] = ""
             
-        for things in price:
-            data["fee"] = things.text.split("\n")[0]
+        # for things in price:
+        #     data["fee"] = things.text.split("\n")[0]
 
         links = []
         for url in urls:
@@ -95,12 +96,20 @@ class HkfaSpider(scrapy.Spider):
                     links[j] = ""
                     # urls[j] = ""
         
+        print("\n\n\n")
+        print(links)
+        print("\n\n\n")
         for link in links:
             if (link != ""):
                 yield scrapy.Request(link, callback=self.parse_events)
 
     def parse_events(self, response):
-        
+        # global data, scrap_fee
+        for keys in data.keys():
+            data[keys] = ""
+
+        scrap_fee = False
+
         # name handler
         name = response.xpath('//*[@id="title_bar_left"]/text()').extract_first()
         # //*[@id="article"]/div[2]/div/table/tbody/tr/th/p/span/strong
@@ -195,35 +204,163 @@ class HkfaSpider(scrapy.Spider):
         data["source"] = "Hong Kong Film Archive"
         data["link_eng"] = response.url
 
+        if "goethe" in response.url:
+            yield scrapy.Request(response.url.replace('/en/', '/cn/'), callback=self.parse_cn, meta=data)
+        else:
+            yield scrapy.Request(response.url.replace('/en_US/', '/zh_TW/'), callback=self.parse_cn, meta=data)
+
+    def parse_cn(self, response):
+        data = response.meta
+        # name handler
+        name = response.xpath('//*[@id="title_bar_left"]/text()').extract_first()
+        # //*[@id="article"]/div[2]/div/table/tbody/tr/th/p/span/strong
+        if (name == "電影放映"):
+            name = response.xpath('//*[@id="article"]//span/strong/text()').extract_first()
+        
+        if (name == None):
+            name = response.xpath('//div[@class="application"]/h1/text()').extract()
+            # cleaning up
+            tmp = name
+            name = ""
+            for text in tmp:
+                name += text
+            name = self.cleanText(name)
+        
+        data["event_name_chi"] = name
+        # End of handle of name
+        
+        # Handle description
+        description = response.xpath("//*[@id='article']/div/div/div/div/div/p/text()").extract()
+        # print(f"\n\n\n\n\nTHE DESCRIPTION FOR {response.url} IS {description}\n\n\n\n")
+        if (len(description) == 0):
+            description = response.xpath('//*[@id="article"]/div/div/div/div/p[position() >= 3]/text()').extract()
+            if (len(description) == 0):
+                description = response.xpath("//*[@id='article']/p[position() >= 2]/text()").extract()
+                if (len(description) == 0):
+                    description = response.xpath("//article/div/div[3]/div[@class='span12 doppelTeaser']/text()[8]").extract()
+            
+        desc = ""
+        for i in range(len(description)):
+            desc += self.cleanText(description[i])
+
+        data["description_chi"] = desc.strip() 
+        # End of handle of description
+
+        # Handle location
+        location = response.xpath("//*[@id='article']/div/div/div/div/p[2]/strong/text()").extract()
+
+        if (len(location) == 0):
+            location = response.xpath("//*[@id='article']/table[@class='table_main']/tbody/tr[2]/td[3]/text()").extract_first()
+            if (location == None):
+                location = response.xpath("//div[@class='teaserBox']/h2/text()").extract_first().strip()
+            else:
+                location = location.strip()
+        else:
+            location = location[1].replace("地點：", "").strip()
+            
+        data["location_chi"] = location
+        # End of handle of location 
+
+        data["link_chi"] = response.url
+
         # Handle fee
         fee = response.xpath('//*[@id="article"]/div/div/div/div/p[2]/text()').extract()
+        
         if (len(fee) == 0):
-            fee_link = response.url.replace("https://", "").split("/")
-            fee_link[len(fee_link)-1] = "ticketinfo.html"
-            ticket_link = ""
-            for link in fee_link:
-                ticket_link += link + "/"
-            ticket_link = ticket_link.rstrip("/")
-            # r = scrapy.Request("https://"+ticket_link, callback=self.get_fee, meta=data)
-            # yield r
+            if ("goethe" in response.url):
+                # To handle goethe
+                fee_list = response.xpath('//div[1]/div[3]/div[1]/div/article/div/div[3]/aside/p/text()').extract()
+                fee_chunk = ""
+                for stuff in fee_list:
+                    fee_chunk += stuff
+                new_fee = re.findall(r"[$]\d+", fee_chunk)[0]
+                data["fee"] = new_fee
+
+                try:
+                    del data["depth"]
+                    del data["download_timeout"]
+                    del data["download_slot"]
+                    del data["download_latency"]
+                    del data["redirect_times"]
+                    del data["redirect_ttl"]
+                    del data["redirect_urls"]
+                    del data["redirect_reasons"]
+                except:
+                    pass
+
+                yield data
+
+            else:
+                fee_link = response.url.replace("https://", "").split("/")
+                fee_link[len(fee_link)-1] = "ticketinfo.html"
+                ticket_link = ""
+                for link in fee_link:
+                    ticket_link += link + "/"
+                ticket_link = ticket_link.rstrip("/")
+                ticket_link = "https://"+ticket_link
+                yield scrapy.Request(ticket_link, callback=self.get_fee, meta=data, dont_filter=True)
+            # yield scrapy.Request(ticket_link, callback=self.get_fee, meta=data, dont_filter=True)
         else:
-            data["fee"] = fee
-        # //aside/p[1]/text()[2]
+            nfee = ""
+            for f in fee:
+                if re.search(r"\w", f):
+                    nfee = f
+                    break
+            if "免費" in nfee:
+                nfee = "Free Admission"
+            data["fee"] = nfee
+
+            try:
+                del data["depth"]
+                del data["download_timeout"]
+                del data["download_slot"]
+                del data["download_latency"]
+                del data["redirect_times"]
+                del data["redirect_ttl"]
+                del data["redirect_urls"]
+                del data["redirect_reasons"]
+            except:
+                pass
+
+            yield data
+            # yield data
         # End of handle of fee
-
-        
-
-        
-        yield data    
-        #     yield scrapy.Request(response.url.replace('/en_US/', '/zh_TW/'), callback=self.parse_cn, meta=data)
 
     def get_fee(self, response):
         data = response.meta
-        fee = response.xpath('//*[@id="article"]/p[span/strong/text()[contains(., "Tickets:" ) or contains(., "Tickets:")]]//text()').extract()
-        print("\n\n\n")
-        print("This link ", response.url)
-        print(fee)
-        print("\n\n\n")
-        data["fee"] = fee
+        fee = response.xpath('//*[@id="article"]//p[span//strong//text()[contains(., "票價：" )]]//text()').extract()
+
+        # if (len(fee) == 0):
+        #     ggfee = response.xpath('//div[1]/div[3]/div[1]/div/article/div/div[3]/aside/p[1]/text()[2]').extract()
+        #     # //div[1]/div[3]/div[1]/div/article/div/div[3]/aside/p[1]/text()[2]
+        #     # div[3]/div[1]/div/article/div/div[3]/aside/p/text()
+            
+        #     print("\n\n\n\nGG FEE: ")
+        #     print(ggfee)
+        #     print("\n\n\n\n")
+        # aside class=span6 artikelspalte doppelTeaser / p 
+        # Regex r"[$]\d+"
+        # /html/body/div[1]/div[3]/div[1]/div/article/div/div[3]/aside/p[1]/text()[2]
+
+        nfee = ""
+
+        for f in fee:
+            if re.search(r"\w", f):
+                nfee = f
+                break
+
+        data["fee"] = nfee.replace("票價：", "")
+
+        try:
+            del data["depth"]
+            del data["download_timeout"]
+            del data["download_slot"]
+            del data["download_latency"]
+            del data["redirect_times"]
+            del data["redirect_ttl"]
+            del data["redirect_urls"]
+            del data["redirect_reasons"]
+        except:
+            pass
+
         yield data
-    # def parse_cn(self, response):
