@@ -21,10 +21,10 @@ These are web crawlers to collect job ads posts from different websites.
 - [Hong Kong Museum of Art](https://hk.art.museum/en_US/web/ma/home.html) (In progress)
 - [Taikoo Place Artistree](https://www.taikooplace.com/en/artistree) (In progress)
 - [Tai Kuwn](https://www.taikwun.hk/en/) (In progress)
-- [The Mills](http://www.themills.com.hk/en/)
+- [The Mills](http://www.themills.com.hk/en/) (In progress)
 - [Jockey Club Creative Art Centre](https://www.jccac.org.hk/?lang=en)
 - [PMQ](https://www.pmq.org.hk) (In progress)
-- [Asia Society](https://asiasociety.org/hong-kong)
+- [Asia Society](https://asiasociety.org/hong-kong) (In progress)
 
 ## Websites supported
 
