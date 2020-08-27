@@ -26,18 +26,6 @@ These are web crawlers to collect job ads posts from different websites.
 - [PMQ](https://www.pmq.org.hk) (In progress)
 - [Asia Society](https://asiasociety.org/hong-kong) (In progress)
 
-## Websites supported
-
-- [adecco](https://www.adecco.com.hk/)
-- [cpjobs](https://www.cpjobs.com/hk/jobs/)
-- [efc](https://www.efinancialcareers.hk/sitemap/html#jobsBySector)
-- [glassdoor](https://www.glassdoor.com.hk/index.htm?countryRedirect=true)
-- [indeed](https://www.indeed.ae/jobs?q=Islamic%20Finance&vjk=8db8f17434c93fa3)
-- [jobsdb](https://hk.jobsdb.com/hk/jobs/banking-finance/1)
-- [jora](https://hk.jora.com/j?q=&l=&sp=homepage)
-- [michaelpage](https://www.michaelpage.com.hk/job-search)
-- [pagepersonnel](https://www.pagepersonnel.com.hk/)
-
 ## 1. Start MongoDB by docker-Compose
 
 It schedules daily to crawl job ads websites and also host a local MongoDB instance, with port: **9997** and host: **127.0.0.1** .
@@ -78,23 +66,15 @@ For **"standalone mode"**:
 
 ## 3. Run Scrapy
 
-> scrapy crawl adecco_update
+> scrapy crawl westkowloon
 
-> scrapy crawl cpjobs_update
+> scrapy crawl taikwun
 
-> scrapy crawl efc_update
+> scrapy crawl taikoo
 
-> scrapy crawl glassdoor_update
+> scrapy crawl hkmoa
 
-> scrapy crawl indeed_update
-
-> scrapy crawl jobsdb
-
-> scrapy crawl jora_update
-
-> scrapy crawl michaelpage_update
-
-> scrapy crawl pagepersonnel_update
+> scrapy crawl hkfa
 
 # Query in MongoDB
 
