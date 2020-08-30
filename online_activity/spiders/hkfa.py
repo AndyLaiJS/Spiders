@@ -31,9 +31,6 @@ scrap_fee = False
 class HkfaSpider(scrapy.Spider):
     name = 'hkfa'
     # allowed_domains = ['www.filmarchive.gov.hk/en_US/web/hkfa/programmesandexhibitions/evecal.html']
-    # custom_settings = {
-    #     'CONCURRENT_REQUEST': 1,
-    # }
     start_urls = ['http://www.filmarchive.gov.hk/en_US/web/hkfa/programmesandexhibitions/evecal.html']
 
     def cleanText(self, string):
@@ -56,35 +53,8 @@ class HkfaSpider(scrapy.Spider):
         driver = webdriver.Chrome(PATH)
         driver.get(response.url)
 
-        # # Easier to handle these data directly using Selenium syntaxes - there was a consistent xpath 
+        # Get urls using Selenium due to the page being dynamically rendered instead of statically
         urls = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']//a")
-        # name = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() mod 3 = 0]")
-        # date = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() = 1 or position() mod 6 = 0]")
-        # price = driver.find_elements_by_xpath("//*[@id='article']/table[@class='table_main']/tbody//td[position() mod 4 = 0]")
-        
-        # data["fetch_date"] = datetime.now()
-
-        # for i in range(len(name)):
-        #     test.append(name[i].text.replace("\n", ", "))
-        # # data["event_name_eng"] = name
-
-        # # Cleanup of the scrape data for dates happens within this for loop
-        # for things in date:
-        #     # Regular expression to remove contents inside parenthesis ( ... )
-        #     date_cleaned = re.sub("\([^)]*\)", "", str(things.text))
-        #     dates = date_cleaned.split(" - ")
-        #     for i in range(len(dates)):
-        #         dates[i] = dates[i].strip()
-            
-        #     if (len(dates) > 0):
-        #         data["start_date"] = datetime.strptime(dates[0], "%d %B %Y")
-        #         if len(dates) == 2:
-        #             data["end_date"] = datetime.strptime(dates[1], "%d %B %Y")
-        #         else:
-        #             data["end_date"] = ""
-            
-        # for things in price:
-        #     data["fee"] = things.text.split("\n")[0]
 
         links = []
         for url in urls:
@@ -107,8 +77,6 @@ class HkfaSpider(scrapy.Spider):
         # global data, scrap_fee
         for keys in data.keys():
             data[keys] = ""
-
-        scrap_fee = False
 
         # name handler
         name = response.xpath('//*[@id="title_bar_left"]/text()').extract_first()
@@ -231,7 +199,6 @@ class HkfaSpider(scrapy.Spider):
         
         # Handle description
         description = response.xpath("//*[@id='article']/div/div/div/div/div/p/text()").extract()
-        # print(f"\n\n\n\n\nTHE DESCRIPTION FOR {response.url} IS {description}\n\n\n\n")
         if (len(description) == 0):
             description = response.xpath('//*[@id="article"]/div/div/div/div/p[position() >= 3]/text()').extract()
             if (len(description) == 0):
