@@ -76,6 +76,8 @@ For **"standalone mode"**:
 
 > scrapy crawl hkfa
 
+> scrapy crawl asiaworldexpo
+
 # Query in MongoDB
 
 > db.getCollection('jobs').find({}, {stdJobFunc:1, _id:0})
