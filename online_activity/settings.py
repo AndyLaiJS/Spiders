@@ -14,6 +14,8 @@ BOT_NAME = 'online_activity'
 SPIDER_MODULES = ['online_activity.spiders']
 NEWSPIDER_MODULE = 'online_activity.spiders'
 
+# LOG_ENABLED = False
+# CONCURRENT_REQUESTS = 1
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'online_activity (+http://www.yourdomain.com)'
